@@ -2,13 +2,15 @@ const profile = {
   username: "Jacob",
   playTime: 300,
   changeUsername(newName) {
-    profile.username = newName;
+    this.username = newName;
   },
-  updatePlayTime(hours) {
-    profile.playTime = profile.playTime + hours;
+  updatePlayTime(...hours) {
+    for (const hrs of hours) {
+      this.playTime += hrs;
+    }
   },
   getInfo() {
-    return `${profile.username} has ${profile.playTime} active hours!`
+    return `${this.username} has ${this.playTime} active hours!`
   },
 };
 
@@ -42,6 +44,10 @@ console.log(profile.getInfo()); // "Marco has 300 active hours!"
 
 profile.updatePlayTime(20);
 console.log(profile.getInfo()); // "Marco has 320 active hours!"
+
+const playHours = [10, 20, 30, 40];
+profile.updatePlayTime(...playHours);
+console.log(`SPREAD & REST test. ${profile.getInfo()}`); // "SPREAD & REST test. Marco has 420 active hours!"
 
 /* Залиш цей код для перевірки ментором.
 
